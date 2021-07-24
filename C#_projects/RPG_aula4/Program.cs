@@ -6,7 +6,8 @@ namespace RPG_aula4
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Play play = new Play();
+            play.Start();
         }
     }
 }
