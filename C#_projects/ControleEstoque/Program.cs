@@ -6,10 +6,8 @@ namespace ControleEstoque //ESCOPO DO CÓDIGO: EU POSSO USAR COISAS DE OUTROS AR
     {
         static void Main(string[] args)
         {
-            // BlueShop blueshop = new BlueShop();
-            // blueshop.Iniciar();
-            Produto prod = new Produto();
-            Console.WriteLine(prod.Descricao);
+            BlueShop blueshop = new BlueShop();
+            blueshop.Iniciar();
         }
     }
 }

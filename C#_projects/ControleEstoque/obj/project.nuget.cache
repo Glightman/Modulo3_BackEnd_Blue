@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kZY+qufC2BDol+II2VBgsrb6I0HOE1HCg0+k1z+HWyv/upo0tnNH4nh/qJi+4uwT11mt8zLROKiyAmm5cjiHNQ==",
+  "dgSpecHash": "0Kw/OZ+y9NkdmkHBNOhoVcU/N2trDw7HyIQeyn0Mu5FQ/IHTS8UhbxGJKxAUdaGfattwIvw+O2E21rtTwCWzSQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gabriel\\source\\repos\\ControleEstoque\\ControleEstoque.csproj",
+  "projectFilePath": "C:\\Users\\Gabriel\\Documents\\Modulo3_BackEnd_Blue\\C#_projects\\ControleEstoque\\ControleEstoque.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -11,6 +11,7 @@ namespace ControleEstoque
             Console.WriteLine("Selecione uma opção");
             Console.WriteLine("1 - Cadastrar um produto");
             Console.WriteLine("2 - Listar produtos");
+            Console.WriteLine("3 - Valor total do estoque");
             Console.WriteLine("0 - Sair");
             string opcao = Console.ReadLine();
             switch (opcao)
@@ -20,6 +21,9 @@ namespace ControleEstoque
                     break;
                 case "2":
                     ListarProdutos();             
+                    break;
+                case "3":
+                    TotalValorProd();
                     break;
                 case "0":
                     return;              
@@ -49,6 +53,16 @@ namespace ControleEstoque
                 Console.WriteLine("--");
                 Console.WriteLine(p.Descricao);
             }
+        }
+
+        void TotalValorProd()
+        {
+            double valorToltal = 0;
+            foreach (Produto p in produtos)
+            {
+                valorToltal = valorToltal + p.Preco;                
+            }
+            Console.WriteLine($"O valor de todos os produtos é: {valorToltal:0.00}");
         }
 
     }

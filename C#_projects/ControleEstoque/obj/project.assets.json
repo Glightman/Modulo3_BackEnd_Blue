@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gabriel\\source\\repos\\ControleEstoque\\ControleEstoque.csproj",
+      "projectUniqueName": "C:\\Users\\Gabriel\\Documents\\Modulo3_BackEnd_Blue\\C#_projects\\ControleEstoque\\ControleEstoque.csproj",
       "projectName": "ControleEstoque",
-      "projectPath": "C:\\Users\\Gabriel\\source\\repos\\ControleEstoque\\ControleEstoque.csproj",
+      "projectPath": "C:\\Users\\Gabriel\\Documents\\Modulo3_BackEnd_Blue\\C#_projects\\ControleEstoque\\ControleEstoque.csproj",
       "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gabriel\\source\\repos\\ControleEstoque\\obj\\",
+      "outputPath": "C:\\Users\\Gabriel\\Documents\\Modulo3_BackEnd_Blue\\C#_projects\\ControleEstoque\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",
