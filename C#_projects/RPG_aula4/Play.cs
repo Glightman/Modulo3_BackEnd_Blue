@@ -11,10 +11,12 @@ namespace RPG_aula4
         public void Start()
         {
             Decor();
-            Console.WriteLine("SEJA BEM VINDO AO RPG DA BLUE:");
+            Console.WriteLine("..... SEJA BEM VINDO AO RPG DA BLUE .....");
             Console.WriteLine("..... Escolha um nome para o seu jogador: ....");
-            Console.ReadLine();
+            string nome = Console.ReadLine();
             Decor();
+            Console.WriteLine($"Seu Herói se chama {nome}!");
+            Console.WriteLine("ESSAS SÃO AS SUAS ATRIBUIÇÕES INICIAIS:");
         }
 
         public void Decor()
