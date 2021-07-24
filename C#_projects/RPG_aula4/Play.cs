@@ -24,5 +24,9 @@ namespace RPG_aula4
             string str = string.Concat(Enumerable.Repeat("-=-", 15));
             Console.WriteLine(str);
         }
+        public void HeroPowers()
+        {
+
+        }
     }
 }
