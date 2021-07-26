@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    public class Produto
+    public class Aluno
     {
     }
 }

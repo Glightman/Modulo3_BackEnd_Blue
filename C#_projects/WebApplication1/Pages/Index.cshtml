@@ -5,6 +5,12 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">O NÚMERO DA SORTE É: @Model.randomNumber</h1>
 </div>
+
+@if (Model.randomNumber > 70)
+{
+<div class="text-center">
+    <h3 class="display-4">VOCÊ ESTÁ COM MUITA SORTE HOJE!!!</h3>
+</div>
+}

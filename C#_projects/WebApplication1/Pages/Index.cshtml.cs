@@ -11,6 +11,8 @@ namespace WebApplication1.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        public Random random = new Random();
+        public int randomNumber;
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -19,7 +21,7 @@ namespace WebApplication1.Pages
 
         public void OnGet()
         {
-
+            randomNumber = random.Next(1, 101);
         }
     }
 }
