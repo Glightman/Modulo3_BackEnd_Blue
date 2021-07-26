@@ -3,4 +3,20 @@
 @{
 }
 
-olá essa é a página create
+<form>
+    <div class="mb-3">
+        <label for="nome" class="form-label">Digite seu nome</label>
+        <input type="text" class="form-control" id="nome" aria-describedby="emailHelp">
+        
+    </div>
+    <div class="mb-3">
+        <label for="data_nasc" class="form-label">Data de nascimento</label>
+        <input type="password" class="form-control" id="data_nasc">
+        <div id="emailHelp" class="form-text">Exemplo: DD/MM/AAAA</div>
+    </div>
+</form>
+<div class="btn-group" role="group" aria-label="Basic outlined example">
+    <a class="btn btn-primary" asp-area="" asp-page="/Alunos/Sucesso" role="button">Concluir</a>
+    <a class="btn btn-dark" asp-area="" asp-page="/Alunos/Index" role="button">Voltar</a>
+</div>
+

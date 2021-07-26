@@ -357,3 +357,4 @@ C:\Users\Gabriel\Documents\Modulo3_BackEnd_Blue\C#_projects\WebApplication1\obj\
 C:\Users\Gabriel\Documents\Modulo3_BackEnd_Blue\C#_projects\WebApplication1\obj\Debug\net5.0\WebApplication1.genruntimeconfig.cache
 C:\Users\Gabriel\Documents\Modulo3_BackEnd_Blue\C#_projects\WebApplication1\obj\Debug\net5.0\Razor\Pages\Alunos\Index.cshtml.g.cs
 C:\Users\Gabriel\Documents\Modulo3_BackEnd_Blue\C#_projects\WebApplication1\obj\Debug\net5.0\Razor\Pages\Alunos\Create.cshtml.g.cs
+C:\Users\Gabriel\Documents\Modulo3_BackEnd_Blue\C#_projects\WebApplication1\obj\Debug\net5.0\Razor\Pages\Alunos\Sucesso.cshtml.g.cs
