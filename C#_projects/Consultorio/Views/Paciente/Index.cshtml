@@ -1,0 +1,23 @@
+﻿@model List<Paciente>
+
+<h2>Lista de pacientes</h2>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Data de Nascimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Paciente p in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(Model => p.Id)</td>
+                    <td>@Html.DisplayFor(Model => p.Nome)</td>
+                    <td>@Html.DisplayFor(Model => p.Nascimento)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-primary" asp-area="" asp-controller="Paciente" asp-action="Create" role="button" >Cadastrar novo paciente</a>
