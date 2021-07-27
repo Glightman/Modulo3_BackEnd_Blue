@@ -8,10 +8,13 @@ namespace Consultorio.Models
 {
     public class Paciente
     {
+        [Display(Name = "#")]
         public int Id { get; set; }
 
+        [Display(Name = "Nome")]
         public string Nome { get; set; }
 
+        [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
         public DateTime Nascimento { get; set; }
     }
