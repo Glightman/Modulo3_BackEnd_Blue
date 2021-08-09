@@ -21,8 +21,6 @@ namespace Consultorio.Controllers
         public IActionResult Index(string busca, bool ordenar = false)
         {
             ViewBag.ordenar = ordenar;
-            Random r = new Random();
-
             return View(service.getAll(busca,ordenar));
         }
 
