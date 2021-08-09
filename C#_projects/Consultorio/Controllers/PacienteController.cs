@@ -1,4 +1,5 @@
 ﻿using Consultorio.Models;
+using Consultorio.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,40 +8,84 @@ using System.Threading.Tasks;
 
 namespace Consultorio.Controllers
 {
+    //Controllers são responsáveis por trabalhar e buscar dados que serão utilizados para o usuário.
     public class PacienteController : Controller
     {
+        IPacienteService service;
 
-
-        public IActionResult Index(int id) // Pacientes/Index/3
+        public PacienteController(IPacienteService service)
         {
-            List<Paciente> pacientes = id == 0 ? getPacientes() : getPacientes().FindAll(x => x.Id == id);
-            return View(pacientes);
+            this.service = service;
         }
+
+        public IActionResult Index(string busca, bool ordenar = false)
+        {
+            ViewBag.ordenar = ordenar;
+            Random r = new Random();
+
+            return View(service.getAll(busca,ordenar));
+        }
+
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Paciente p)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Paciente paciente)
         {
-            List<Paciente> pacientes = getPacientes();
-            p.Id = pacientes.Count() + 1;
-            pacientes.Add(p);
-            ViewBag.lista = pacientes;
-            return View("Index");
+            if (!ModelState.IsValid) return View(paciente);
+
+            return service.create(paciente) ?
+                RedirectToAction(nameof(Index)) :
+                View(paciente);
+        }  
+            
+
+        public IActionResult Read(int? id) // localhost/Paciente/Read/id?
+        {
+            Paciente paciente = service.get(id);
+            return paciente != null ?
+                View(paciente) :
+                NotFound();
         }
-        public IActionResult Sucesso()
+
+        public IActionResult Update(int? id)
         {
-            return View();
+            Paciente paciente = service.get(id);
+            return paciente != null ?
+                View(paciente) :
+                NotFound();
         }
-        List<Paciente> getPacientes()
+
+        [HttpPost] 
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(Paciente paciente)
         {
-            List<Paciente> listaPacientes = new List<Paciente>();
-            listaPacientes.Add(new Paciente { Id = 1, Nome = "Italo" });
-            listaPacientes.Add(new Paciente { Id = 2, Nome = "Eduardo" });
-            listaPacientes.Add(new Paciente { Id = 3, Nome = "Janio" });
-            return listaPacientes;
+            if(!ModelState.IsValid) return View(paciente);
+
+            if (service.update(paciente)) //// PacienteStaticService.Create(paciente)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View(paciente);
+            }
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (service.delete(id)) //// PacienteStaticService.Create(paciente)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

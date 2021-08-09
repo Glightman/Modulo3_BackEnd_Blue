@@ -1,6 +1,9 @@
+using Consultorio.Data;
+using Consultorio.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Consultorio
 {
@@ -24,6 +28,20 @@ namespace Consultorio
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // Quando add um contexto, o addtransient também é executado
+            services.AddDbContext<ConsultorioContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("Consultorio"))
+            );
+
+
+            // AddTransient é responsável por falar para o framework que,
+            // quando a interface for necessária, seja utilizada a classe
+
+            //services.AddTransient<IPacienteService, PacienteStaticService>();
+            services.AddTransient<PacienteSqlService>();
+            services.AddTransient<PacienteStaticService>();
+            services.AddTransient<IPacienteService, PacienteSqlService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +70,7 @@ namespace Consultorio
                     name: "default",
                     // classe / método 
                     // ProdutoController -> Criar  -- 
+                    // Home / Index 
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
