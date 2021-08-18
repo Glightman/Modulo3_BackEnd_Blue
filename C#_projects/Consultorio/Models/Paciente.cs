@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Consultorio.Models
 {
@@ -20,9 +18,10 @@ namespace Consultorio.Models
         [DataType(DataType.Date)]
         public DateTime? Nascimento { get; set; }
 
+        [Required(ErrorMessage = "Informe um número de telefone para o paciente!")]
+        [Display(Name = "Nr de telefone")]
+        public string Telefone { get; set; }
 
-        [Display(Name = "Descrição")]
-        public string Descricao { get; set; }
-
+        public List<Consulta> Consultas { get; set; }
     }
 }

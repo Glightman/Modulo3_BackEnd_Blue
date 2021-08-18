@@ -1,8 +1,13 @@
 ﻿@model List<Paciente>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
 
 
 <h2>Lista de pacientes</h2>
-<a class="btn btn-link" asp-controller="Paciente" asp-action="Create">Criar um novo paciente!</a>
+@if (SignInManager.IsSignedIn(User))
+{
+    <a class="btn btn-link" asp-controller="Paciente" asp-action="Create">Criar um novo paciente!</a>
+}
 
 <form class="row">
     <div class="col col-md-4">
@@ -43,12 +48,11 @@
     <tbody>
         @foreach (Paciente paciente in Model) // { 1, p1, x} {2, p2, y} ...
         {
-            <tr>
-                @*<td> @paciente.Id</td>
-                    <td> @paciente.Nome</td>
-                    <td> @paciente.Nascimento</td>*@
+            var classe = paciente.Consultas.Count > 0 ? "text-info" : "";
+            string consultaQtd = paciente.Consultas.Count > 0 ? $"- {paciente.Consultas.Count}" : "";
+            <tr class="@classe">
                 <td> @Html.DisplayFor(Model => paciente.Id) </td>
-                <td> @Html.DisplayFor(Model => paciente.Nome) </td>
+                <td> @Html.DisplayFor(Model => paciente.Nome) <span>@consultaQtd</span> </td>
                 <td> @Html.DisplayFor(Model => paciente.Nascimento) </td>
                 <td>
                     <a asp-controller="Paciente" asp-action="Read" asp-route-id="@paciente.Id">Visualizar</a> |

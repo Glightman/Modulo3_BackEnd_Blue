@@ -12,11 +12,11 @@ namespace Consultorio.Services
         List<Paciente> getPacientes()
         {
             List<Paciente> listaPacientes = new List<Paciente>();
-            listaPacientes.Add(new Paciente { Id = 1, Nome = "Italo", Nascimento = new DateTime(1980, 10, 08), Descricao = "Paciente 1 - Italo" });
-            listaPacientes.Add(new Paciente { Id = 2, Nome = "Eduardo", Nascimento = new DateTime(1995, 01, 25), Descricao = "Paciente 2 - Eduardo" });
-            listaPacientes.Add(new Paciente { Id = 3, Nome = "Janio", Nascimento = new DateTime(2000, 7, 5), Descricao = "Paciente 3 - Janio" });
-            listaPacientes.Add(new Paciente { Id = 4, Nome = "Filipe", Nascimento = new DateTime(2000, 7, 5), Descricao = "Paciente 4 - Filipe" });
-            listaPacientes.Add(new Paciente { Id = 5, Nome = "Gabriel", Nascimento = new DateTime(2000, 7, 5), Descricao = "Paciente 5 - Gabriel" });
+            listaPacientes.Add(new Paciente { Id = 1, Nome = "Italo", Nascimento = new DateTime(1980, 10, 08), Telefone = "Paciente 1 - Italo" });
+            listaPacientes.Add(new Paciente { Id = 2, Nome = "Eduardo", Nascimento = new DateTime(1995, 01, 25), Telefone = "Paciente 2 - Eduardo" });
+            listaPacientes.Add(new Paciente { Id = 3, Nome = "Janio", Nascimento = new DateTime(2000, 7, 5), Telefone = "Paciente 3 - Janio" });
+            listaPacientes.Add(new Paciente { Id = 4, Nome = "Filipe", Nascimento = new DateTime(2000, 7, 5), Telefone = "Paciente 4 - Filipe" });
+            listaPacientes.Add(new Paciente { Id = 5, Nome = "Gabriel", Nascimento = new DateTime(2000, 7, 5), Telefone = "Paciente 5 - Gabriel" });
             return listaPacientes;
         }
 

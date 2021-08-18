@@ -13,9 +13,17 @@ namespace Consultorio
     {
         public static void Main(string[] args)
         {
-            var app = CreateHostBuilder(args).Build();
-            SeedDatabase.Initialize(app);
-            app.Run();
+            var host = CreateHostBuilder(args).Build();
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<ConsultorioContext>();
+                context.Database.Migrate();
+                SeedDatabase.Initialize(services);
+            }
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

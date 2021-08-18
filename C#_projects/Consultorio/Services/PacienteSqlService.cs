@@ -1,5 +1,6 @@
 ﻿using Consultorio.Data;
 using Consultorio.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Consultorio.Services
 
         public List<Paciente> getAll(string busca = null, bool ord = false)
         {
-            List<Paciente> lista = context.Paciente.ToList();
+            List<Paciente> lista = context.Paciente.Include(p => p.Consultas).ToList();
             if (busca != null)
             {
                 return lista.FindAll(a =>
@@ -49,7 +50,7 @@ namespace Consultorio.Services
         }
         public Paciente get(int? id)
         {
-            return context.Paciente.Find(id);
+            return context.Paciente.Include(p => p.Consultas).FirstOrDefault(p => p.Id == id);
         }
 
         public bool update(Paciente p)

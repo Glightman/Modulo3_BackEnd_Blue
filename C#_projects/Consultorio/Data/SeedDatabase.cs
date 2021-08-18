@@ -9,42 +9,51 @@ namespace Consultorio.Data
 {
     public static class SeedDatabase
     {
-        public static void Initialize(IHost app)
+        public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var scope = app.Services.CreateScope())
+            
+            int qtd_registros = 20;
+            string[] nomes = new string[] { "Eurico", "Eduardo", "José", "Italo", "Gabriel", "Alexandre", "Ricardo", "Ycaro", "Caio", "Thales", "Jorge", "Janio", "Josue", "Nivia", "Paula", "Osama", "Ted", "Arnold" };
+            string[] sobrenomes = new string[] { "Santos", "Silva", "Freisleben", "Meirelles", "Nogueira", "Teodoro", "Martins", "Ribeiro", "Batalha", "Santana", "Zarantonelo", "Teixeira", "Schwarzenegger", "Kazinscki", "Campos", "Silveira", "Ferrari", "Barros", "Lino", "Russi" };
+
+            using (var context = new ConsultorioContext(serviceProvider.GetRequiredService<DbContextOptions<ConsultorioContext>>()))
             {
-                var serviceProvider = scope.ServiceProvider;
-                var context = serviceProvider.GetRequiredService<ConsultorioContext>();
-                context.Database.Migrate(); // update-database
-
-                if (!context.Paciente.Any())
+                if (context.Paciente.Any())
                 {
-                    context.Paciente.Add(new Paciente { Nome = "Italo", Nascimento = new DateTime(1980, 10, 08), Descricao = "Paciente 1 - Italo" });
-                    context.Paciente.Add(new Paciente { Nome = "Eduardo", Nascimento = new DateTime(1995, 01, 25), Descricao = "Paciente 2 - Eduardo" });
-                    context.Paciente.Add(new Paciente { Nome = "Janio", Nascimento = new DateTime(2000, 7, 5), Descricao = "Paciente 3 - Janio" });
-                    context.Paciente.Add(new Paciente { Nome = "Filipe", Nascimento = new DateTime(2000, 7, 5), Descricao = "Paciente 4 - Filipe" });
-                    context.Paciente.Add(new Paciente { Nome = "Gabriel", Nascimento = new DateTime(2000, 7, 5), Descricao = "Paciente 5 - Gabriel" });
-                    context.Paciente.Add(new Paciente { Nome = "Chubi Chubi", Nascimento = new DateTime(1914, 9, 12), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Aderbaldo", Nascimento = new DateTime(1871, 12, 12), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Clorosvaldo de Sódio", Nascimento = new DateTime(2035, 9, 10), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Magneto", Nascimento = new DateTime(1922, 1, 9), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Ant Man", Nascimento = new DateTime(2021, 2, 8), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Doctor Strange", Nascimento = new DateTime(2784, 3, 7), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Scarlett", Nascimento = new DateTime(2005, 4, 6), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Marvel Captain", Nascimento = new DateTime(1945, 5, 5), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Ovne", Nascimento = new DateTime(1949, 6, 4), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Tony Stark", Nascimento = new DateTime(2020, 7, 3), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Tea Queen", Nascimento = new DateTime(2017, 8, 2), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Kara", Nascimento = new DateTime(2018, 9, 1), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Clark Kent", Nascimento = new DateTime(1978, 10, 11), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Van a Diesel", Nascimento = new DateTime(1800, 11, 10), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Mike", Nascimento = new DateTime(2022, 12, 9), Descricao = "Somebody crazy" });
-                    context.Paciente.Add(new Paciente { Nome = "Harvey Specter", Nascimento = new DateTime(2022, 1, 8), Descricao = "Somebody crazy" });
+                    return;
                 }
-                context.SaveChanges();
-            }
 
-                
+                for (int i =0; i < qtd_registros; i++)
+                {
+                    Random aleatorio = new Random();
+
+                    // GERANDO NOMES ALEATÓRIOS
+                    var nomeCompleto = $"{nomes[aleatorio.Next(0,nomes.Length)]} {sobrenomes[aleatorio.Next(0, sobrenomes.Length)]}";
+
+                    // GERANDO DATAS DE NASCIMENTO ALEATÓRIAS
+                    var nascimento = new DateTime(1950, 1, 1);
+                    int dias = (DateTime.Today - nascimento).Days;
+                    nascimento = nascimento.AddDays(aleatorio.Next(dias));
+
+                    // GERANDO NÚMEROS DE TELEFONE ALEATÓRIOS
+                    string telefone = aleatorio.Next(100000000, 999999999).ToString();
+                    string ddd = aleatorio.Next(10, 99).ToString();
+
+                    // CRIANDO REGISTRO DE PACIENTE NO BANCO
+                    context.Paciente.AddRange(
+                        new Paciente
+                        {
+                            Nome = nomeCompleto,
+                            Nascimento = nascimento,
+                            Telefone = $"{ddd} {telefone}"
+                        }
+                    );
+
+                }
+
+                context.SaveChanges();
+            }             
+            
         }
     }
 }
